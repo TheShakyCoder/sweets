@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['title', 'slug', 'content'])]
+#[Fillable(['title', 'slug', 'description', 'content', 'thumbnail'])]
 class Post extends Model
 {
     use SoftDeletes, HasUuids;

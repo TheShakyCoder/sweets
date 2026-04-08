@@ -14,7 +14,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/news-updates', [PostController::class, 'index'])->name('posts.index');
-Route::get('/news-updates/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/news-updates/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/api/facebook-feed', [FacebookFeedController::class, 'index'])->name('facebook.feed');
 

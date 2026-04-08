@@ -96,7 +96,7 @@ function tagColour(index) {
                 <!-- Post list -->
                 <div v-else class="flex flex-col gap-5">
                     <Link v-for="(post, index) in props.posts.data" :key="post.id"
-                          :href="`/news-updates/${post.id}`"
+                          :href="`/news-updates/${post.slug}`"
                           class="group flex border border-warm-200 rounded-2xl overflow-hidden hover:border-brand-300 hover:shadow-lg transition-all duration-200">
 
                         <!-- Colour accent left bar -->

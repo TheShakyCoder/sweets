@@ -19,7 +19,10 @@ function formatDate(iso) {
 </script>
 
 <template>
-    <Head :title="`${post.title} — Woodvale &amp; Ainsdale Community Centre`" />
+    <Head 
+        :title="`${post.title} — Woodvale &amp; Ainsdale Community Centre`" 
+        :description="post.description"
+        />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
 
@@ -96,9 +99,5 @@ function formatDate(iso) {
 </template>
 
 <style scoped>
-img {
-    width: 500px;
-    max-width: 100%;
-    height: auto;
-}
+
 </style>
