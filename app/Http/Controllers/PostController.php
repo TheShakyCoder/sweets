@@ -11,14 +11,15 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::latest()
+        $posts = Post::with('thumbnail')->latest()
             ->paginate(9)
             ->through(fn ($post) => [
-                'id'         => $post->id,
-                'title'      => $post->title,
-                'slug'       => $post->slug,
-                'excerpt'    => str($post->content)->stripTags()->limit(160)->toString(),
-                'created_at' => $post->created_at->format('j M Y'),
+                'id'            => $post->id,
+                'title'         => $post->title,
+                'slug'          => $post->slug,
+                'excerpt'       => str($post->content)->stripTags()->limit(160)->toString(),
+                'created_at'    => $post->created_at->format('j M Y'),
+                'thumbnail_url' => $post->thumbnail?->url,
             ]);
 
         return Inertia::render('Post/Index', [
@@ -30,8 +31,12 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $post->load('thumbnail');
+
         return Inertia::render('Post/Show', [
-            'post'        => $post,
+            'post'        => array_merge($post->toArray(), [
+                'thumbnail_url' => $post->thumbnail?->url,
+            ]),
             'canLogin'    => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

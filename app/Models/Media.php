@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Media extends Model
 {
@@ -14,9 +15,11 @@ class Media extends Model
 
     protected $appends = ['url'];
 
-    public function getUrlAttribute(): string
+    public function url(): Attribute
     {
-        return Storage::disk($this->disk)->url($this->path);
+        return Attribute::make(
+            get: fn () => Storage::disk($this->disk)->url($this->path),
+        );
     }
 
     public function uploader()

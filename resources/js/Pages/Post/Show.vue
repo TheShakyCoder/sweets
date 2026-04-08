@@ -71,24 +71,39 @@ function formatDate(iso) {
 
         <!-- Article body -->
         <section class="py-16 lg:py-20 bg-white">
-            <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-                <div class="prose prose-lg max-w-none
-                            prose-headings:font-display prose-headings:text-warm-900
-                            prose-p:text-warm-700 prose-p:leading-relaxed
-                            prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline
-                            prose-strong:text-warm-900 prose-ul:text-warm-700 prose-ol:text-warm-700"
-                     v-html="marked.parse(post.content ?? '')">
-                </div>
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:gap-16">
 
-                <!-- Back link -->
-                <div class="mt-14 pt-8 border-t border-warm-100">
-                    <a href="/news-updates"
-                       class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                        Back to News &amp; Updates
-                    </a>
+                    <!-- Main content -->
+                    <div>
+                        <div class="prose prose-lg max-w-none
+                                    prose-headings:font-display prose-headings:text-warm-900
+                                    prose-p:text-warm-700 prose-p:leading-relaxed
+                                    prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline
+                                    prose-strong:text-warm-900 prose-ul:text-warm-700 prose-ol:text-warm-700"
+                             v-html="marked.parse(post.content ?? '')">
+                        </div>
+
+                        <!-- Back link -->
+                        <div class="mt-14 pt-8 border-t border-warm-100">
+                            <a href="/news-updates"
+                               class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                Back to News &amp; Updates
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside v-if="post.thumbnail_url" class="mt-10 lg:mt-0">
+                        <div class="sticky top-8">
+                            <img :src="post.thumbnail_url" :alt="post.title"
+                                 class="w-full rounded-2xl shadow-md object-cover" />
+                        </div>
+                    </aside>
+
                 </div>
             </div>
         </section>

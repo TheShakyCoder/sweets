@@ -99,8 +99,13 @@ function tagColour(index) {
                           :href="`/news-updates/${post.slug}`"
                           class="group flex border border-warm-200 rounded-2xl overflow-hidden hover:border-brand-300 hover:shadow-lg transition-all duration-200">
 
-                        <!-- Colour accent left bar -->
-                        <div class="w-1.5 shrink-0"
+                        <!-- Thumbnail or colour bar -->
+                        <div v-if="post.thumbnail_url"
+                             class="w-36 sm:w-48 shrink-0 self-stretch bg-warm-100 overflow-hidden">
+                            <img :src="post.thumbnail_url" :alt="post.title"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        </div>
+                        <div v-else class="w-1.5 shrink-0"
                              :class="[
                                  index % 5 === 0 ? 'bg-brand-500' :
                                  index % 5 === 1 ? 'bg-sky-500' :
