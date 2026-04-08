@@ -11,15 +11,6 @@ const props = defineProps({
 
 const statCards = [
     {
-        label:  'News Posts',
-        key:    'posts',
-        icon:   '📰',
-        href:   '/internal/posts',
-        colour: 'bg-brand-50 border-brand-200',
-        iconBg: 'bg-brand-100',
-        value:  'text-brand-700',
-    },
-    {
         label:  'Staff Users',
         key:    'users',
         icon:   '👥',
@@ -32,7 +23,7 @@ const statCards = [
         label:  'Roles',
         key:    'roles',
         icon:   '🔐',
-        href:   '/internal/roles',
+        href:   '/admin/roles',
         colour: 'bg-purple-50 border-purple-200',
         iconBg: 'bg-purple-100',
         value:  'text-purple-700',
@@ -40,10 +31,10 @@ const statCards = [
 ];
 
 const quickLinks = [
-    { label: 'New Post',    icon: '✍️',  href: '/internal/posts/create',  colour: 'bg-brand-600 hover:bg-brand-700 text-white' },
-    { label: 'All Posts',   icon: '📰',  href: '/internal/posts',          colour: 'bg-sky-500 hover:bg-sky-600 text-white' },
-    { label: 'Roles',       icon: '🔐',  href: '/internal/roles',          colour: 'bg-purple-600 hover:bg-purple-700 text-white' },
-    { label: 'Public Site', icon: '🌐',  href: '/',                        colour: 'bg-warm-700 hover:bg-warm-800 text-white' },
+    { label: 'Users',       icon: '👥',  href: '/admin/users',  colour: 'bg-brand-600 hover:bg-brand-700 text-white' },
+    { label: 'All Posts',   icon: '📰',  href: '/admin/posts',  colour: 'bg-sky-500 hover:bg-sky-600 text-white' },
+    { label: 'Roles',       icon: '🔐',  href: '/admin/roles',  colour: 'bg-purple-600 hover:bg-purple-700 text-white' },
+    { label: 'Public Site', icon: '🌐',  href: '/',             colour: 'bg-warm-700 hover:bg-warm-800 text-white' },
 ];
 
 function formatDate(iso) {
@@ -54,7 +45,7 @@ function formatDate(iso) {
 <template>
     <Head title="Internal Dashboard" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout title="Admin Dashboard">
         <template #header>
             <div class="flex items-center justify-between">
                 <div>
@@ -73,12 +64,12 @@ function formatDate(iso) {
 
         <!-- Quick actions -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            <a v-for="link in quickLinks" :key="link.label" :href="link.href"
+            <Link v-for="link in quickLinks" :key="link.label" :href="link.href"
                class="flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition-colors shadow-sm"
                :class="link.colour">
                 <span class="text-base">{{ link.icon }}</span>
                 {{ link.label }}
-            </a>
+            </Link>
         </div>
 
         <!-- Stats -->

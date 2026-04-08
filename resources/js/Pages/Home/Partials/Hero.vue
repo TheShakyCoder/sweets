@@ -16,7 +16,7 @@ defineProps({
 
         <!-- Faint background logo -->
         <div class="absolute right-[-60px] top-1/2 -translate-y-1/2 w-[520px] h-[520px] pointer-events-none select-none"
-             style="transform: translateY(-50%) rotate(-15deg);">
+             style="transform: translateY(-50%) rotate(15deg);">
             <img src="/media/logo.png" alt=""
                  class="w-full h-full object-contain opacity-20 md:opacity-30" />
         </div>

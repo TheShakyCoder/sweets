@@ -34,6 +34,7 @@ class HandleInertiaRequests extends Middleware
                 'admin' => $request->user()->is_admin,
                 'create_user' => $request->user()->can('create', User::class),
                 'create_post' => $request->user()->can('create', Post::class),
+                'view_posts' => $request->user()->can('viewAny', Post::class),
             ];
         }
         return [

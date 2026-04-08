@@ -17,7 +17,6 @@ class RoleRightController extends Controller
     {
         $internalRoutes = collect(Route::getRoutes()->getRoutes())
             ->filter(function($item) {
-
                 return
                     str_starts_with($item->uri, 'internal')
                     && (
@@ -42,9 +41,36 @@ class RoleRightController extends Controller
             })
             ->groupBy('controller_group');
 
-        return Inertia::render('Admin/Roles/Rights/Index', [
+        $adminRoutes = collect(Route::getRoutes()->getRoutes())
+            ->filter(function($item) {
+                return
+                    str_starts_with($item->uri, 'admin')
+                    && (
+                        str_ends_with($item->action['controller'], 'index')
+                        || str_ends_with($item->action['controller'], 'show')
+                        || str_ends_with($item->action['controller'], 'store')
+                        || str_ends_with($item->action['controller'], 'update')
+                        || str_ends_with($item->action['controller'], 'destroy')
+                    )
+                    ;
+            })
+            ->map(function($i) {
+                $as = explode('.', $i->action['as']);
+                $controller = $as[1];
+
+                return [
+                    'method' => $as[2],
+                    'controller_group' => $controller,
+                    'controller' => last(explode('\\', $i->action['controller'])),
+                    'route' => $i->action['as'],
+                ];
+            })
+            ->groupBy('controller_group');
+
+        return Inertia::render('Admin/Role/Right/Index', [
             'role' => $role->load('rights'),
-            'internal' => $internalRoutes
+            'internal' => $internalRoutes,
+            'admin' => $adminRoutes,
         ]);
     }
 

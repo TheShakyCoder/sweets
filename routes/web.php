@@ -11,7 +11,7 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);
-});
+})->name('home');
 
 Route::get('/news-updates', [PostController::class, 'index'])->name('posts.index');
 
@@ -35,8 +35,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //  ADMIN ROUTES
     Route::get('/admin', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::name('admin.')->prefix('admin')->group(function () {
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::get('users/{user}/roles', [\App\Http\Controllers\Admin\UserRoleController::class, 'index'])->name('user_roles.index');
+        Route::put('users/{user}/roles', [\App\Http\Controllers\Admin\UserRoleController::class, 'update'])->name('user_roles.update');
+        
         Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
-
         Route::get('roles/{role}/rights', [\App\Http\Controllers\Admin\RoleRightController::class, 'index'])->name('role_rights.index');
         Route::post('roles/{role}/rights', [\App\Http\Controllers\Admin\RoleRightController::class, 'store'])->name('role_rights.store');
         Route::put('roles/{role}/rights', [\App\Http\Controllers\Admin\RoleRightController::class, 'update'])->name('role_rights.update');

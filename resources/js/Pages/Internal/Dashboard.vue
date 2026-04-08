@@ -2,6 +2,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
+const props = defineProps({
+    can: Object,
+});
+
 const stats = [
     { label: 'Upcoming Events', value: '4', icon: '📅', change: '+2 this week', trend: 'up', color: 'bg-brand-50 border-brand-200', iconBg: 'bg-brand-100', valueColor: 'text-brand-700' },
     { label: 'Active Members', value: '1,248', icon: '👥', change: '+12 this month', trend: 'up', color: 'bg-sky-50 border-sky-200', iconBg: 'bg-sky-100', valueColor: 'text-sky-700' },
@@ -20,7 +24,7 @@ const recentActivity = [
 const quickLinks = [
     { label: 'Events', icon: '📅', href: '#', color: 'bg-brand-600 hover:bg-brand-700 text-white' },
     { label: 'News', icon: '✍️', href: route('internal.posts.index'), color: 'bg-sky-500 hover:bg-sky-600 text-white' },
-    { label: 'Add Member', icon: '👤', href: '#', color: 'bg-purple-600 hover:bg-purple-700 text-white' },
+    { label: 'Posts', icon: '👤', href: route('internal.posts.index'), color: 'bg-purple-600 hover:bg-purple-700 text-white', permission: 'view_posts' },
     { label: 'View Reports', icon: '📊', href: '#', color: 'bg-warm-700 hover:bg-warm-800 text-white' },
 ];
 </script>
@@ -28,7 +32,7 @@ const quickLinks = [
 <template>
     <Head title="Dashboard — WACA Admin" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout title="Internal Dashboard">
         <template #header>
             <div class="flex items-center justify-between">
                 <div>
@@ -50,12 +54,14 @@ const quickLinks = [
 
         <!-- Quick actions -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            <a v-for="link in quickLinks" :key="link.label" :href="link.href"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors shadow-sm"
-               :class="link.color">
-                <span class="text-base">{{ link.icon }}</span>
-                {{ link.label }}
-            </a>
+            <template v-for="link in quickLinks" :key="link.label">
+                <a v-if="can[link.permission]" :href="link.href"
+                   class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors shadow-sm"
+                   :class="link.color">
+                    <span class="text-base">{{ link.icon }}</span>
+                    {{ link.label }}
+                </a>
+            </template>
         </div>
 
         <!-- Stats grid -->

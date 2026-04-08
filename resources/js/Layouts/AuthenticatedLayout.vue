@@ -5,6 +5,9 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
+defineProps({
+    title: String,
+});
 const showingNavigationDropdown = ref(false);
 </script>
 
@@ -18,11 +21,11 @@ const showingNavigationDropdown = ref(false);
 
                     <!-- Logo + Brand -->
                     <div class="flex items-center gap-4">
-                        <Link :href="route('dashboard')" class="flex items-center gap-3">
+                        <Link :href="route('home')" class="flex items-center gap-3">
                             <img src="/media/logo.png" alt="WACA" class="h-10 w-auto" />
                             <div class="hidden sm:block">
                                 <p class="text-sm font-semibold text-brand-700 leading-tight font-display">WACA</p>
-                                <p class="text-xs text-warm-400 leading-tight">Admin Panel</p>
+                                <p class="text-xs text-warm-400 leading-tight">{{ title }}</p>
                             </div>
                         </Link>
 

@@ -1,15 +1,16 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { router, useForm, Link, usePage } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import Checkbox from '@/Components/Checkbox.vue';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Groups from './Partials/Groups.vue';
 
 const page = usePage();
 
 const props = defineProps({
     role: { type: Object, required: true },
     internal: { type: Object, required: true },
+    admin: { type: Object, required: true },
 });
 
 const form = useForm({
@@ -30,16 +31,12 @@ const methodMeta = {
     destroy: { label: 'Delete', colour: 'bg-rose-100 text-rose-700 border-rose-200' },
 };
 
-function meta(method) {
-    return methodMeta[method] ?? { label: method, colour: 'bg-warm-100 text-warm-700 border-warm-200' };
-}
-
 const savedCount = computed(() =>
     Object.values(form.controller_method_names).filter(Boolean).length
 );
 
 function submit() {
-    router.put('/internal/roles/' + props.role.id + '/rights', form);
+    router.put('/admin/roles/' + props.role.id + '/rights', form);
 }
 </script>
 
@@ -52,7 +49,7 @@ function submit() {
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <!-- Back to roles -->
-                    <Link :href="'/internal/roles/' + role.id"
+                    <Link :href="'/admin/roles/' + role.id"
                         class="p-1.5 rounded-lg text-warm-400 hover:text-warm-700 hover:bg-warm-100 transition-colors">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -87,62 +84,19 @@ function submit() {
             </div>
         </template>
 
-        <form @submit.prevent="submit">
+        <!-- Server flash success -->
+        <div v-if="page.props.flash.success"
+            class="mb-6 flex items-center gap-2 px-4 py-3 bg-brand-50 border border-brand-200 rounded-xl text-sm text-brand-700">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {{ page.props.flash.success }}
+        </div>
 
-            <!-- Server flash success -->
-            <div v-if="page.props.flash.success"
-                class="mb-6 flex items-center gap-2 px-4 py-3 bg-brand-50 border border-brand-200 rounded-xl text-sm text-brand-700">
-                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {{ page.props.flash.success }}
-            </div>
-
-            <!-- Success flash -->
-            <div v-if="form.wasSuccessful"
-                class="mb-6 flex items-center gap-2 px-4 py-3 bg-brand-50 border border-brand-200 rounded-xl text-sm text-brand-700">
-                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Rights updated successfully.
-            </div>
-
-            <!-- Groups -->
-            <ul class="flex flex-col gap-4">
-                <li v-for="(routes, groupName) in internal" :key="groupName">
-                    <h3 class="text-lg font-semibold text-warm-900">{{ groupName.toUpperCase().replaceAll('_', ' ') }}</h3>
-                    <ul class="flex flex-row gap-2">
-                        <li v-for="r in routes" :key="r.route" class="">
-
-
-                            <div class="flex items-center justify-between gap-3">
-                                <input type="checkbox" v-model="form.controller_method_names[r.route]" :class="methodMeta[r.method].colour" />
-                                <label id="" class="">{{ r.method }}</label>
-                            </div>
-
-
-
-                        
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- Sticky save bar -->
-            <div class="sticky bottom-6 mt-8 flex justify-end">
-                <button type="submit" :disabled="form.processing"
-                    class="inline-flex items-center gap-2 px-7 py-3 bg-brand-600 text-white font-semibold rounded-xl text-sm
-                               hover:bg-brand-700 transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-                    <svg v-if="form.processing" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    {{ form.processing ? 'Saving…' : 'Save changes' }}
-                </button>
-            </div>
-
-        </form>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Groups :title="'Internal Routes'" :routes="internal" :form="form" :methodMeta="methodMeta" :submit="submit" />
+            <Groups :title="'Admin Routes'" :routes="admin" :form="form" :methodMeta="methodMeta" :submit="submit" />
+        </div>
     </AuthenticatedLayout>
 </template>

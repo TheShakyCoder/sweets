@@ -16,8 +16,7 @@ defineProps({ roles: Object });
                     <h1 class="text-xl font-semibold text-warm-900 font-display">Roles</h1>
                     <p class="text-sm text-warm-500 mt-0.5">Manage staff roles and their permissions</p>
                 </div>
-                <Link v-if="page.props.auth.permissions?.includes('internal.roles.store')"
-                      href="/internal/roles/create"
+                <Link href="/admin/roles/create"
                       class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 text-white text-sm font-semibold rounded-xl hover:bg-brand-700 transition-colors shadow-sm">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -27,13 +26,23 @@ defineProps({ roles: Object });
             </div>
         </template>
 
+        <!-- Flash -->
+        <div v-if="page.props.flash.success"
+             class="mb-6 flex items-center gap-2 px-4 py-3 bg-brand-50 border border-brand-200 rounded-xl text-sm text-brand-700">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            {{ page.props.flash.success }}
+        </div>
+
         <!-- Empty state -->
         <div v-if="!roles?.data?.length"
              class="text-center py-20 bg-warm-50 rounded-2xl border border-warm-200">
             <span class="text-4xl block mb-3">🔐</span>
             <p class="font-semibold text-warm-800 mb-1">No roles yet</p>
             <p class="text-sm text-warm-500 mb-5">Create your first role to start managing permissions.</p>
-            <Link href="/internal/roles/create"
+            <Link href="/admin/roles/create"
                   class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 text-white text-sm font-semibold rounded-xl hover:bg-brand-700 transition-colors">
                 Create a role
             </Link>
@@ -42,7 +51,7 @@ defineProps({ roles: Object });
         <!-- Roles grid -->
         <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <Link v-for="role in roles.data" :key="role.id"
-                  :href="`/internal/roles/${role.id}`"
+                  :href="`/admin/roles/${role.id}`"
                   class="group flex items-center gap-4 p-5 bg-white border border-warm-200 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all">
                 <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
                     <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
