@@ -95,7 +95,7 @@ function copyUrl(url) {
 <template>
     <Head title="Media Library" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :title="'Media Library'">
         <template #header>
             <div class="flex items-center justify-between">
                 <div>

@@ -53,6 +53,13 @@ const showingNavigationDropdown = ref(false);
                                       : 'text-warm-600 hover:bg-warm-100 hover:text-warm-900'">
                                 Media
                             </Link>
+                            <Link href="/admin/menu-items"
+                                  class="px-3 py-2 text-sm font-medium rounded-lg transition-colors"
+                                  :class="$page.url.startsWith('/admin/menu-items')
+                                      ? 'bg-brand-50 text-brand-700'
+                                      : 'text-warm-600 hover:bg-warm-100 hover:text-warm-900'">
+                                Menu
+                            </Link>
                         </div>
                     </div>
 
@@ -120,6 +127,12 @@ const showingNavigationDropdown = ref(false);
                 <div class="px-4 py-3 space-y-1">
                     <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink href="/admin/media" :active="$page.url.startsWith('/admin/media')">
+                        Media
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink href="/admin/menu-items" :active="$page.url.startsWith('/admin/menu-items')">
+                        Menu
                     </ResponsiveNavLink>
                 </div>
                 <div class="border-t border-warm-100 px-4 py-3">
