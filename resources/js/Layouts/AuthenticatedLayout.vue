@@ -46,16 +46,16 @@ const showingNavigationDropdown = ref(false);
                                       : 'text-warm-600 hover:bg-warm-100 hover:text-warm-900'">
                                 Admin
                             </Link>
-                            <Link href="/admin/media"
+                            <Link href="/internal/media"
                                   class="px-3 py-2 text-sm font-medium rounded-lg transition-colors"
-                                  :class="$page.url.startsWith('/admin/media')
+                                  :class="$page.url.startsWith('/internal/media')
                                       ? 'bg-brand-50 text-brand-700'
                                       : 'text-warm-600 hover:bg-warm-100 hover:text-warm-900'">
                                 Media
                             </Link>
-                            <Link href="/admin/menu-items"
+                            <Link href="/internal/menu-items"
                                   class="px-3 py-2 text-sm font-medium rounded-lg transition-colors"
-                                  :class="$page.url.startsWith('/admin/menu-items')
+                                  :class="$page.url.startsWith('/internal/menu-items')
                                       ? 'bg-brand-50 text-brand-700'
                                       : 'text-warm-600 hover:bg-warm-100 hover:text-warm-900'">
                                 Menu
@@ -128,10 +128,10 @@ const showingNavigationDropdown = ref(false);
                     <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
                     </ResponsiveNavLink>
-                    <ResponsiveNavLink href="/admin/media" :active="$page.url.startsWith('/admin/media')">
+                    <ResponsiveNavLink href="/internal/media" :active="$page.url.startsWith('/internal/media')">
                         Media
                     </ResponsiveNavLink>
-                    <ResponsiveNavLink href="/admin/menu-items" :active="$page.url.startsWith('/admin/menu-items')">
+                    <ResponsiveNavLink href="/internal/menu-items" :active="$page.url.startsWith('/internal/menu-items')">
                         Menu
                     </ResponsiveNavLink>
                 </div>

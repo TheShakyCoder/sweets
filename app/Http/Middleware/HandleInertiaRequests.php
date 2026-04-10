@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use App\Models\MenuItem;
+use App\Models\User;
+use App\Models\Post;
 
 class HandleInertiaRequests extends Middleware
 {
