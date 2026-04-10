@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -11,6 +11,25 @@ defineProps({
 
 const mobileMenuOpen = ref(false);
 const openDropdown = ref(null);
+
+function closeDropdowns() {
+    openDropdown.value = null;
+}
+
+function handleClickOutside(e) {
+    // Close dropdowns if clicking outside the nav
+    if (e.target.closest('nav') === null) {
+        closeDropdowns();
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside);
+});
+
+onUnmounted(() => {
+    document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
@@ -34,10 +53,10 @@ const openDropdown = ref(null);
                     <div class="hidden lg:flex items-center gap-1">
                         <div v-for="(link, idx) in navLinks" :key="idx" class="relative group">
                             <!-- Link or dropdown trigger -->
-                            <a v-if="!link.children || link.children.length === 0" :href="link.href"
+                            <Link v-if="!link.children || link.children.length === 0" :href="link.href"
                                 class="px-2 py-2 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors">
                                 {{ link.label }}
-                            </a>
+                            </Link>
                             <button v-else type="button"
                                 class="px-2 py-2 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors flex items-center gap-1"
                                 @click="openDropdown = openDropdown === idx ? null : idx">
@@ -48,12 +67,12 @@ const openDropdown = ref(null);
                             </button>
 
                             <!-- Dropdown menu -->
-                            <div v-if="link.children && link.children.length > 0"
+                            <div v-if="link.children && link.children.length > 0 && openDropdown === idx"
                                  class="absolute left-0 mt-0 w-48 bg-white border border-warm-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <a v-for="(child, cidx) in link.children" :key="cidx" :href="child.href"
+                                <Link v-for="(child, cidx) in link.children" :key="cidx" :href="child.href"
                                    class="block px-4 py-2.5 text-sm text-warm-700 hover:bg-brand-50 hover:text-brand-700 transition-colors first:rounded-t-xl last:rounded-b-xl">
                                     {{ child.label }}
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
