@@ -10,6 +10,7 @@ defineProps({
 });
 
 const mobileMenuOpen = ref(false);
+const openDropdown = ref(null);
 </script>
 
 <template>
@@ -31,10 +32,30 @@ const mobileMenuOpen = ref(false);
 
                     <!-- Desktop nav -->
                     <div class="hidden lg:flex items-center gap-1">
-                        <a v-for="link in navLinks" :key="link.label" :href="link.href"
-                            class="px-2 py-2 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors">
-                            {{ link.label }}
-                        </a>
+                        <div v-for="(link, idx) in navLinks" :key="idx" class="relative group">
+                            <!-- Link or dropdown trigger -->
+                            <a v-if="!link.children || link.children.length === 0" :href="link.href"
+                                class="px-2 py-2 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                                {{ link.label }}
+                            </a>
+                            <button v-else type="button"
+                                class="px-2 py-2 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors flex items-center gap-1"
+                                @click="openDropdown = openDropdown === idx ? null : idx">
+                                {{ link.label }}
+                                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': openDropdown === idx }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div v-if="link.children && link.children.length > 0"
+                                 class="absolute left-0 mt-0 w-48 bg-white border border-warm-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <a v-for="(child, cidx) in link.children" :key="cidx" :href="child.href"
+                                   class="block px-4 py-2.5 text-sm text-warm-700 hover:bg-brand-50 hover:text-brand-700 transition-colors first:rounded-t-xl last:rounded-b-xl">
+                                    {{ child.label }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- CTA buttons -->
@@ -75,10 +96,30 @@ const mobileMenuOpen = ref(false);
 
             <!-- Mobile menu -->
             <div v-if="mobileMenuOpen" class="lg:hidden border-t border-warm-100 bg-white px-4 pb-4 pt-2 space-y-1">
-                <a v-for="link in navLinks" :key="link.label" :href="link.href" @click="mobileMenuOpen = false"
-                    class="block px-4 py-2.5 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors">
-                    {{ link.label }}
-                </a>
+                <template v-for="(link, idx) in navLinks" :key="idx">
+                    <!-- Top-level link -->
+                    <a v-if="!link.children || link.children.length === 0" :href="link.href" @click="mobileMenuOpen = false"
+                        class="block px-4 py-2.5 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                        {{ link.label }}
+                    </a>
+                    <!-- Top-level with submenu -->
+                    <div v-else>
+                        <button @click="openDropdown = openDropdown === idx ? null : idx"
+                            class="w-full text-left px-4 py-2.5 text-sm font-medium text-warm-700 rounded-lg hover:bg-brand-50 hover:text-brand-700 transition-colors flex items-center justify-between">
+                            {{ link.label }}
+                            <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': openDropdown === idx }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
+                        </button>
+                        <!-- Submenu items -->
+                        <div v-if="openDropdown === idx" class="ml-4 mt-1 space-y-1 border-l-2 border-warm-100">
+                            <a v-for="(child, cidx) in link.children" :key="cidx" :href="child.href" @click="mobileMenuOpen = false"
+                               class="block px-4 py-2.5 text-sm text-warm-600 hover:text-brand-700 transition-colors">
+                                {{ child.label }}
+                            </a>
+                        </div>
+                    </div>
+                </template>
                 <div class="pt-2 border-t border-warm-100 flex flex-col gap-2">
                     <Link v-if="canLogin && !$page.props.auth?.user" :href="route('login')"
                         class="block px-4 py-2.5 text-sm font-medium text-brand-700 rounded-lg hover:bg-brand-50 transition-colors">

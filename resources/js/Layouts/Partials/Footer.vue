@@ -1,7 +1,11 @@
 <script setup>
+import { usePage } from '@inertiajs/vue3';
+
 defineProps({
     navLinks: { type: Array },
 });
+
+const page = usePage();
 </script>
 
 <template>
@@ -13,13 +17,13 @@ defineProps({
                         <img src="/media/logo.png" alt="WACA Logo" class="h-14 w-auto brightness-0 invert opacity-90" />
                         <div>
                             <p class="font-semibold text-white font-display">Woodvale &amp; Ainsdale</p>
-                            <p class="text-xs text-white/50">Community Centre</p>
+                            <p class="text-xs text-white/50">Community Association</p>
                         </div>
                     </div>
                     <p class="text-white/60 text-sm leading-relaxed max-w-xs">
                         A registered charity serving the communities of Woodvale and Ainsdale, Southport since 1993.
                     </p>
-                    <p class="text-white/40 text-xs mt-3">Registered Charity No. 1234567</p>
+                    <p class="text-white/40 text-xs mt-3">Registered Charity No. {{ page.props.site.charity_number }}</p>
                 </div>
 
                 <div>
@@ -54,7 +58,7 @@ defineProps({
 
             <div
                 class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-                <p>&copy; {{ new Date().getFullYear() }} Woodvale &amp; Ainsdale Community Centre. All rights reserved.
+                <p>&copy; Fig Limited {{ new Date().getFullYear() }}. All rights reserved.
                 </p>
                 <div class="flex gap-5">
                     <a href="#" class="hover:text-white/70 transition-colors">Privacy Policy</a>

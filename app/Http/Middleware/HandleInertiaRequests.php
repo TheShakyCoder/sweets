@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\MenuItem;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,6 +38,22 @@ class HandleInertiaRequests extends Middleware
                 'view_posts' => $request->user()->can('viewAny', Post::class),
             ];
         }
+
+        // Load menu items from database
+        $navLinks = MenuItem::whereNull('parent_id')
+            ->with('children')
+            ->orderBy('order')
+            ->get()
+            ->map(fn ($item) => [
+                'label' => $item->label,
+                'href' => $item->href,
+                'children' => $item->children->map(fn ($child) => [
+                    'label' => $child->label,
+                    'href' => $child->href,
+                ])->values()->toArray(),
+            ])
+            ->toArray();
+
         return [
             ...parent::share($request),
             'auth' => [
@@ -54,7 +71,7 @@ class HandleInertiaRequests extends Middleware
                 'opening_times' => config('site.opening_times'),
                 'charity_number' => config('site.charity_number'),
                 'established' => config('site.established'),
-                'nav_links' => config('site.nav_links'),
+                'nav_links' => $navLinks,
             ],
 
             'can' => $can ?? [],
