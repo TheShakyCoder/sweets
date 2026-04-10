@@ -18,9 +18,7 @@ function closeDropdowns() {
 
 function handleClickOutside(e) {
     // Close dropdowns if clicking outside the nav
-    if (e.target.closest('nav') === null) {
-        closeDropdowns();
-    }
+    if (e.target.closest('nav') === null) closeDropdowns();
 }
 
 onMounted(() => {
