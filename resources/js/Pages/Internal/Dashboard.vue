@@ -33,7 +33,7 @@ const quickLinks = [
 </script>
 
 <template>
-    <Head title="Dashboard — WACA Admin" />
+    <Head title="Dashboard — WACA Internal" />
 
     <AuthenticatedLayout title="Internal Dashboard">
         <template #header>

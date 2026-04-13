@@ -24,7 +24,7 @@ function submit() {
     if (form.data().type === 'submenu') {
         form.href = null;
     }
-    form.post(route('admin.menu-items.store'));
+    form.post(route('internal.menu-items.store'));
 }
 </script>
 
@@ -84,7 +84,7 @@ function submit() {
                         class="px-6 py-2.5 bg-brand-600 text-white font-semibold rounded-xl hover:bg-brand-700 transition-colors disabled:opacity-50">
                     Create Item
                 </button>
-                <Link href="/admin/menu-items"
+                <Link href="/internal/menu-items"
                       class="px-6 py-2.5 border-2 border-warm-200 text-warm-700 font-semibold rounded-xl hover:border-warm-300 transition-colors">
                     Cancel
                 </Link>

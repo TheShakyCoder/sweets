@@ -53,3 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Catch-all for dynamic page slugs — must remain last
+Route::get('/{slug}', [\App\Http\Controllers\PageController::class, 'show'])
+    ->where('slug', '[a-z0-9-]+')
+    ->name('pages.show');

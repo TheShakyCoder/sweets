@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('slug')->unique();
-            $table->string('thumbnail')->nullable();
             $table->text('content');
+            $table->uuid('thumbnail_id')->nullable()->references('id')->on('media')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -83,7 +83,7 @@ onMounted(() => {
                                 <p class="text-xs text-warm-500">🔗 {{ child.href }}</p>
                             </div>
                             <div class="flex items-center gap-2">
-                                <Link :href="`/admin/menu-items/${child.id}/edit`"
+                                <Link :href="`/internal/menu-items/${child.id}/edit`"
                                       class="px-2 py-1 text-xs text-brand-600 hover:bg-brand-50 rounded transition-colors">
                                     Edit
                                 </Link>
@@ -93,7 +93,7 @@ onMounted(() => {
                                 </button>
                             </div>
                         </div>
-                        <Link :href="`/admin/menu-items/create?parent_id=${item.id}`"
+                        <Link :href="`/internal/menu-items/create?parent_id=${item.id}`"
                               class="inline-flex text-xs text-brand-600 hover:text-brand-800 mt-2">
                             + Add submenu item
                         </Link>
@@ -101,7 +101,7 @@ onMounted(() => {
 
                     <!-- Add submenu button for items without children -->
                     <div v-else class="mt-3">
-                        <Link :href="`/admin/menu-items/create?parent_id=${item.id}`"
+                        <Link :href="`/internal/menu-items/create?parent_id=${item.id}`"
                               class="inline-flex text-xs text-brand-600 hover:text-brand-800">
                             + Add submenu
                         </Link>

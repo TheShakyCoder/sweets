@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pages', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
+            $table->text('content');
+            $table->uuid('thumbnail_id')->nullable();
+            $table->foreign('thumbnail_id')->references('id')->on('media')->nullOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

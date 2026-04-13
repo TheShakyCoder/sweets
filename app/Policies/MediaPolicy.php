@@ -8,9 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class MediaPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
+    public function before(User $operator, string $ability): bool|null
+    {
+        if ($operator->is_admin) return true;
+        return null;
+    }
+
     public function viewAny(User $operator): bool
     {
         return $operator->hasPermissionTo('internal.media.index');
@@ -21,7 +24,7 @@ class MediaPolicy
      */
     public function view(User $operator, Media $media): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.media.show');
     }
 
     /**
@@ -29,7 +32,7 @@ class MediaPolicy
      */
     public function create(User $operator): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.media.store');
     }
 
     /**
@@ -37,7 +40,7 @@ class MediaPolicy
      */
     public function update(User $operator, Media $media): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.media.update');
     }
 
     /**
@@ -45,7 +48,7 @@ class MediaPolicy
      */
     public function delete(User $operator, Media $media): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.media.destroy');
     }
 
     /**

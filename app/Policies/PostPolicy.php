@@ -4,61 +4,45 @@ namespace App\Policies;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PostPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
+    public function before(User $operator, string $ability): bool|null
+    {
+        if ($operator->is_admin) return true;
+        return null;
+    }
+
     public function viewAny(User $operator): bool
     {
         return $operator->hasPermissionTo('internal.posts.index');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
     public function view(User $operator, Post $post): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.posts.show');
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
     public function create(User $operator): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.posts.store');
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $operator, Post $post): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.posts.update');
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
     public function delete(User $operator, Post $post): bool
     {
-        return false;
+        return $operator->hasPermissionTo('internal.posts.destroy');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
     public function restore(User $operator, Post $post): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
     public function forceDelete(User $operator, Post $post): bool
     {
         return false;

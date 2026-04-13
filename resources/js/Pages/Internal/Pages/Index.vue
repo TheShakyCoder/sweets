@@ -6,32 +6,32 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout/Index.vue';
 const page = usePage();
 
 defineProps({
-    posts: Object,
+    pages: Object,
 });
 
 function destroy(id, title) {
     if (confirm(`Delete "${title}"? This cannot be undone.`)) {
-        router.delete(`/internal/posts/${id}`);
+        router.delete(`/internal/pages/${id}`);
     }
 }
 </script>
 
 <template>
-    <Head title="Posts" />
+    <Head title="Pages" />
 
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-xl font-semibold text-warm-900 font-display">Posts</h1>
-                    <p class="text-sm text-warm-500 mt-0.5">Manage news &amp; updates</p>
+                    <h1 class="text-xl font-semibold text-warm-900 font-display">Pages</h1>
+                    <p class="text-sm text-warm-500 mt-0.5">Manage static content pages</p>
                 </div>
-                <Link href="/internal/posts/create"
+                <Link href="/internal/pages/create"
                       class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 text-white text-sm font-semibold rounded-xl hover:bg-brand-700 transition-colors shadow-sm">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    New post
+                    New page
                 </Link>
             </div>
         </template>
@@ -47,39 +47,31 @@ function destroy(id, title) {
         </div>
 
         <!-- Empty state -->
-        <div v-if="!posts?.data?.length"
+        <div v-if="!pages?.data?.length"
              class="text-center py-20 bg-warm-50 rounded-2xl border border-warm-200">
-            <span class="text-4xl block mb-3">📰</span>
-            <p class="font-semibold text-warm-800 mb-1">No posts yet</p>
-            <p class="text-sm text-warm-500 mb-5">Create your first news post to get started.</p>
-            <Link href="/internal/posts/create"
+            <span class="text-4xl block mb-3">📄</span>
+            <p class="font-semibold text-warm-800 mb-1">No pages yet</p>
+            <p class="text-sm text-warm-500 mb-5">Create your first page to get started.</p>
+            <Link href="/internal/pages/create"
                   class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 text-white text-sm font-semibold rounded-xl hover:bg-brand-700 transition-colors">
-                Write a post
+                Create a page
             </Link>
         </div>
 
-        <!-- Posts list -->
+        <!-- Pages list -->
         <div v-else class="bg-white border border-warm-200 rounded-2xl overflow-hidden shadow-sm">
             <div class="divide-y divide-warm-100">
-                <div v-for="post in posts.data" :key="post.id"
+                <div v-for="p in pages.data" :key="p.id"
                      class="flex items-center gap-4 px-6 py-4">
                     <div class="w-8 h-8 bg-brand-100 rounded-lg flex items-center justify-center text-sm shrink-0">
-                        📰
+                        📄
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-warm-900 truncate">{{ post.title }}</p>
-                        <p class="text-xs text-warm-400 font-mono mt-0.5 truncate">{{ post.slug }}</p>
+                        <p class="text-sm font-medium text-warm-900 truncate">{{ p.title }}</p>
+                        <p class="text-xs text-warm-400 font-mono mt-0.5 truncate">{{ p.slug }}</p>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
-                        <a :href="`/news-updates/${post.slug}`" target="_blank"
-                           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-warm-600 border border-warm-200 rounded-lg hover:bg-warm-50 transition-colors">
-                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                            </svg>
-                            View
-                        </a>
-                        <Link :href="`/internal/posts/${post.id}/edit`"
+                        <Link :href="`/internal/pages/${p.id}/edit`"
                               class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-warm-600 border border-warm-200 rounded-lg hover:bg-warm-50 transition-colors">
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -87,7 +79,7 @@ function destroy(id, title) {
                             </svg>
                             Edit
                         </Link>
-                        <button @click="destroy(post.id, post.title)"
+                        <button @click="destroy(p.id, p.title)"
                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-rose-600 border border-rose-200 rounded-lg hover:bg-rose-50 transition-colors">
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -100,13 +92,13 @@ function destroy(id, title) {
             </div>
 
             <!-- Pagination -->
-            <div v-if="posts.last_page > 1"
+            <div v-if="pages.last_page > 1"
                  class="flex items-center justify-between px-6 py-4 border-t border-warm-100 bg-warm-50">
                 <p class="text-xs text-warm-500">
-                    Showing {{ posts.from }}–{{ posts.to }} of {{ posts.total }}
+                    Showing {{ pages.from }}–{{ pages.to }} of {{ pages.total }}
                 </p>
                 <div class="flex gap-1">
-                    <Link v-for="link in posts.links" :key="link.label"
+                    <Link v-for="link in pages.links" :key="link.label"
                           :href="link.url ?? '#'"
                           v-html="link.label"
                           class="px-3 py-1.5 text-xs rounded-lg border transition-colors"

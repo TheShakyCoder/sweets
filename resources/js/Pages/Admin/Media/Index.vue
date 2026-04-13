@@ -34,7 +34,7 @@ async function uploadFiles(files) {
     files.forEach(f => formData.append('files[]', f));
 
     try {
-        await axios.post('/admin/media', formData, {
+        await axios.post('/internal/media', formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
             onUploadProgress: (e) => {
                 const pct = Math.round((e.loaded / e.total) * 100);
@@ -63,13 +63,13 @@ function select(item) {
 function deselect() { selected.value = null; }
 
 async function saveAlt() {
-    await axios.patch(`/admin/media/${selected.value.id}`, { alt: altDraft.value });
+    await axios.patch(`/internal/media/${selected.value.id}`, { alt: altDraft.value });
     selected.value.alt = altDraft.value;
 }
 
 function confirmDelete(item) {
     if (!confirm(`Delete "${item.filename}"? This cannot be undone.`)) return;
-    router.delete(`/admin/media/${item.id}`, {
+    router.delete(`/internal/media/${item.id}`, {
         onSuccess: () => { selected.value = null; },
     });
 }
@@ -77,7 +77,7 @@ function confirmDelete(item) {
 // ── Search ───────────────────────────────────────────────
 const searchQuery = ref(props.search);
 function doSearch() {
-    router.get('/admin/media', { search: searchQuery.value }, { preserveState: true, replace: true });
+    router.get('/internal/media', { search: searchQuery.value }, { preserveState: true, replace: true });
 }
 
 // ── Helpers ──────────────────────────────────────────────

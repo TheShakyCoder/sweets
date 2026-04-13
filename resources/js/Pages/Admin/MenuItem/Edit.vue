@@ -23,12 +23,12 @@ function submit() {
     if (form.data().type === 'submenu') {
         form.href = null;
     }
-    form.patch(route('admin.menu-items.update', props.menuItem.id));
+    form.patch(route('internal.menu-items.update', props.menuItem.id));
 }
 
 function deleteItem() {
     if (!confirm('Delete this menu item?')) return;
-    router.delete(route('admin.menu-items.destroy', props.menuItem.id));
+    router.delete(route('internal.menu-items.destroy', props.menuItem.id));
 }
 </script>
 
@@ -84,7 +84,7 @@ function deleteItem() {
                         class="px-6 py-2.5 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-colors">
                     Delete
                 </button>
-                <Link href="/admin/menu-items"
+                <Link href="/internal/menu-items"
                       class="px-6 py-2.5 border-2 border-warm-200 text-warm-700 font-semibold rounded-xl hover:border-warm-300 transition-colors">
                     Cancel
                 </Link>
