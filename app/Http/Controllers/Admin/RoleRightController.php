@@ -17,8 +17,11 @@ class RoleRightController extends Controller
     {
         $internalRoutes = collect(Route::getRoutes()->getRoutes())
             ->filter(function($item) {
+                $as = explode('.', $item->action['as'] ?? '');
+                // Only include top-level resource routes (exactly 3 segments: internal.resource.method)
                 return
                     str_starts_with($item->uri, 'internal')
+                    && count($as) === 3
                     && (
                         str_ends_with($item->action['controller'], 'index')
                         || str_ends_with($item->action['controller'], 'show')
@@ -43,8 +46,10 @@ class RoleRightController extends Controller
 
         $adminRoutes = collect(Route::getRoutes()->getRoutes())
             ->filter(function($item) {
+                $as = explode('.', $item->action['as'] ?? '');
                 return
                     str_starts_with($item->uri, 'admin')
+                    && count($as) === 3
                     && (
                         str_ends_with($item->action['controller'], 'index')
                         || str_ends_with($item->action['controller'], 'show')

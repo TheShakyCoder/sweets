@@ -16,6 +16,10 @@ Route::get('/', function () {
 Route::get('/news-updates', [PostController::class, 'index'])->name('posts.index');
 Route::get('/news-updates/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
+Route::get('/competitions', [\App\Http\Controllers\CompetitionController::class, 'index'])->name('competitions.index');
+Route::get('/competitions/{slug}', [\App\Http\Controllers\CompetitionController::class, 'show'])->name('competitions.show');
+Route::middleware('auth')->post('/competitions/{slug}/submit', [\App\Http\Controllers\CompetitionController::class, 'submit'])->name('competitions.submit');
+
 Route::get('/api/facebook-feed', [FacebookFeedController::class, 'index'])->name('facebook.feed');
 
 
@@ -32,6 +36,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::name('internal.')->prefix('internal')->group(function () {
         Route::resource('media', \App\Http\Controllers\Internal\MediaController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('menu-items', \App\Http\Controllers\Internal\MenuItemController::class);
+        Route::resource('competitions', \App\Http\Controllers\Internal\CompetitionController::class);
+        Route::prefix('competitions/{competition}')->name('competitions.')->group(function () {
+            Route::delete('submissions/{submission}', [\App\Http\Controllers\Internal\CompetitionSubmissionController::class, 'destroy'])->name('submissions.destroy');
+            Route::post('submissions/{submission}/winner', [\App\Http\Controllers\Internal\CompetitionSubmissionController::class, 'winner'])->name('submissions.winner');
+        });
         Route::resource('pages', \App\Http\Controllers\Internal\PageController::class);
         Route::resource('posts', \App\Http\Controllers\Internal\PostController::class);
         Route::resource('activities', \App\Http\Controllers\Internal\ActivityController::class);

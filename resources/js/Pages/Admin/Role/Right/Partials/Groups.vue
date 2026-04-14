@@ -23,7 +23,7 @@ defineProps({
                         <div class="flex items-center justify-between">
                             <label id="" class="">
                                 <input type="checkbox" v-model="form.controller_method_names[r.route]"
-                                    :class="methodMeta[r.method].colour" />
+                                    :class="methodMeta[r.method]?.colour" />
                                 {{ r.method }}
                             </label>
                         </div>

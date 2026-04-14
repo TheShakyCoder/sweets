@@ -1,13 +1,33 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout/Index.vue';
 
 const page = usePage();
 
-const props = defineProps({
-    can: Object,
-});
+const sectionIcons = {
+    posts:        '📰',
+    pages:        '📄',
+    media:        '🖼️',
+    'menu-items': '🔗',
+    competitions: '🏆',
+    activities:   '📅',
+};
+
+const indexLinks = computed(() =>
+    (page.props.can ?? [])
+        .filter(p => typeof p === 'string' && p.endsWith('.index'))
+        .map(p => {
+            const parts = p.split('.');          // ['internal', 'posts', 'index']
+            const resource = parts[1];
+            return {
+                label: resource.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+                href:  `/${parts[0]}/${resource}`,
+                icon:  sectionIcons[resource] ?? '📁',
+            };
+        })
+);
 
 const stats = [
     { label: 'Upcoming Events', value: '4', icon: '📅', change: '+2 this week', trend: 'up', color: 'bg-brand-50 border-brand-200', iconBg: 'bg-brand-100', valueColor: 'text-brand-700' },
@@ -24,12 +44,6 @@ const recentActivity = [
     { action: 'Venue hire booking', detail: 'Main hall booked for 19 Apr', time: 'Yesterday', icon: '🏛️', color: 'bg-amber-100 text-amber-700' },
 ];
 
-const quickLinks = [
-    { label: 'Events', icon: '📅', href: '#', color: 'bg-brand-600 hover:bg-brand-700 text-white' },
-    { label: 'News', icon: '✍️', href: route('internal.posts.index'), color: 'bg-sky-500 hover:bg-sky-600 text-white' },
-    { label: 'Posts', icon: '👤', href: route('internal.posts.index'), color: 'bg-purple-600 hover:bg-purple-700 text-white', permission: 'view_posts' },
-    { label: 'View Reports', icon: '📊', href: '#', color: 'bg-warm-700 hover:bg-warm-800 text-white' },
-];
 </script>
 
 <template>
@@ -56,15 +70,12 @@ const quickLinks = [
         </template>
 
         <!-- Quick actions -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            <template v-for="link in quickLinks" :key="link.label">
-                <a v-if="can[link.permission]" :href="link.href"
-                   class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors shadow-sm"
-                   :class="link.color">
-                    <span class="text-base">{{ link.icon }}</span>
-                    {{ link.label }}
-                </a>
-            </template>
+        <div v-if="indexLinks.length" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+            <a v-for="link in indexLinks" :key="link.href" :href="link.href"
+               class="flex items-center gap-3 px-4 py-3 bg-white border border-warm-200 rounded-xl text-sm font-medium text-warm-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 transition-colors shadow-sm">
+                <span class="text-base">{{ link.icon }}</span>
+                {{ link.label }}
+            </a>
         </div>
 
         <!-- Stats grid -->
