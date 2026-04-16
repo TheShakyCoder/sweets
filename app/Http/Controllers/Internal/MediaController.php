@@ -47,7 +47,7 @@ class MediaController extends Controller
             try {
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs(
-                    'media/' . now()->format('Y/m'),
+                    'media',
                     Str::uuid() . '.' . $file->getClientOriginalExtension(),
                     's3'
                 );
