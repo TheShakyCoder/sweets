@@ -44,10 +44,7 @@ class MediaController extends Controller
         $uploaded = [];
 
         foreach ($request->file('files') as $file) {
-
             try {
-
-
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs(
                     'media/' . now()->format('Y/m'),
@@ -56,6 +53,7 @@ class MediaController extends Controller
                 );
 
                 if (!$path) {
+                    Log::error('Failed to upload file to storage (no path generated): ' . $originalName);
                     return response()->json(['message' => 'Failed to upload ' . $originalName . ' to storage.'], 500);
                 }
 
