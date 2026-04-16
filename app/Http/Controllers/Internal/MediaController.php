@@ -46,11 +46,20 @@ class MediaController extends Controller
         foreach ($request->file('files') as $file) {
             try {
                 $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs(
-                    'media',
-                    Str::uuid() . '.' . $file->getClientOriginalExtension(),
-                    ['disk' => 's3', 'throw' => true],
-                );
+                try {
+                    $path = $file->storeAs(
+                        'media',
+                        Str::uuid() . '.' . $file->getClientOriginalExtension(),
+                        ['disk' => 's3', 'throw' => true],
+                    );
+                } catch (\Throwable $e) {
+                    logger()->error('S3 upload failed', [
+                        'message' => $e->getMessage(),
+                        'class'   => get_class($e),
+                        'trace'   => $e->getTraceAsString(),
+                    ]);
+                    throw $e; // re-throw so you still see the 500
+                }
 
                 if (!$path) {
                     Log::error('Failed to upload file to storage (no path generated): ' . $originalName);
