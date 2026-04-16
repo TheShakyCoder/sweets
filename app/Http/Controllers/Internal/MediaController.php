@@ -32,10 +32,14 @@ class MediaController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Attempting to upload media file: ' . $request->file('files')[0]->getClientOriginalName());
+
         $request->validate([
             'files'   => ['required', 'array', 'min:1'],
             'files.*' => ['required', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg,pdf', 'max:10240'],
         ]);
+
+        Log::info('Validation passed for media upload. Processing files...');
 
         $uploaded = [];
 
