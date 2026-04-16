@@ -24,12 +24,14 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
+            'email_verified_at' => now(),
             'password' => Hash::make(env('ADMIN_PASSWORD', 'password')),
             'is_admin' => true
         ]);
         $user = User::create([
             'name' => 'Editor',
-            'email' => 'editor@example.com',
+            'email' => 'manager@woodvalecentre.co.uk',
+            'email_verified_at' => now(),
             'password' => Hash::make(env('EDITOR_PASSWORD', 'password')),
         ]);
 
