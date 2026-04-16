@@ -49,7 +49,7 @@ class MediaController extends Controller
                 $path = $file->storeAs(
                     'media',
                     Str::uuid() . '.' . $file->getClientOriginalExtension(),
-                    's3'
+                    ['disk' => 's3', 'throw' => true],
                 );
 
                 if (!$path) {
