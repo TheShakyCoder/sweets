@@ -40,8 +40,11 @@ elif [[ -f /assets/nginx.template.conf ]]; then
   cp /assets/nginx.template.conf /etc/nginx.conf
 fi
 
-echo "==> [startup] starting php-fpm (daemonized)"
+echo "==> [startup] starting php-fpm (background)"
 php-fpm -y /assets/php-fpm.conf --daemonize
 
 echo "==> [startup] exec nginx (foreground)"
-exec nginx -c /etc/nginx.conf -g "daemon off;"
+# NOTE: do NOT pass `-g "daemon off;"` here — the Nixpacks nginx template
+# already includes a `daemon off;` directive on line 2, and duplicating
+# it is a fatal nginx error. Just let the config file drive it.
+exec nginx -c /etc/nginx.conf
