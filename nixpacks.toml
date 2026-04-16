@@ -1,0 +1,44 @@
+# Nixpacks configuration for Laravel + Inertia/Vue on Coolify
+#
+# The PHP provider is auto-detected from composer.json and supplies
+# nginx + php-fpm as the default web runtime. We extend it here to:
+#   - Pin PHP to 8.3 (matches composer.json require "php": "^8.3")
+#   - Add Node 22 for Vite 8 asset building
+#   - Run composer install, npm ci, npm run build
+#   - Pre-cache Laravel framework files during the build phase
+#
+# Migrations run at release time via the Procfile so the built image
+# stays reusable across environments.
+
+providers = ["php"]
+
+[variables]
+# Document root for the PHP provider's generated nginx config.
+NIXPACKS_PHP_ROOT_DIR = "/app/public"
+# Skip Composer scripts that require a runtime key/env we don't have
+# at build time; the real key is injected via Coolify env vars.
+COMPOSER_ALLOW_SUPERUSER = "1"
+
+[phases.setup]
+# "..." preserves the PHP provider's default nixPkgs (php83, composer,
+# nginx, etc.) and appends Node 22 for Vite.
+nixPkgs = ["...", "nodejs_22"]
+
+[phases.install]
+# "..." keeps the provider's default `composer install`. We add a
+# deterministic npm install for the Vite build that follows.
+cmds = [
+  "...",
+  "npm ci --prefer-offline --no-audit --progress=false"
+]
+
+[phases.build]
+# Build front-end assets, then warm Laravel's framework caches so the
+# booted container can serve requests immediately. These caches are
+# regenerated at release time (see Procfile) once runtime env vars are
+# available, but baking them in avoids a cold-start penalty.
+cmds = [
+  "npm run build",
+  "mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache",
+  "chmod -R ug+rwx storage bootstrap/cache"
+]
