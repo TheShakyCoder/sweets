@@ -48,6 +48,12 @@ class AppServiceProvider extends ServiceProvider
                 new BackblazeVisibilityConverter(),
             );
 
+            // Ensure url is set so FilesystemAdapter::url() can construct public URLs.
+            // Fall back to constructing it from endpoint + bucket if AWS_URL is absent.
+            if (empty($config['url']) && !empty($config['endpoint'])) {
+                $config['url'] = rtrim($config['endpoint'], '/') . '/' . $config['bucket'];
+            }
+
             return new FilesystemAdapter(
                 new Filesystem($adapter, ['visibility' => 'public']),
                 $adapter,
