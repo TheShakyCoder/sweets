@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('pages', \App\Http\Controllers\Internal\PageController::class);
         Route::resource('posts', \App\Http\Controllers\Internal\PostController::class);
         Route::resource('activities', \App\Http\Controllers\Internal\ActivityController::class);
+        Route::get('page-views', [\App\Http\Controllers\Internal\PageViewController::class, 'index'])->name('page-views.index');
     });
 
     //  ADMIN ROUTES
