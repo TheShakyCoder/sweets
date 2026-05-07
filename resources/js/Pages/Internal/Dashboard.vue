@@ -1,33 +1,47 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout/Index.vue';
 
 const page = usePage();
 
-const sectionIcons = {
-    posts:        '📰',
-    pages:        '📄',
-    media:        '🖼️',
-    'menu-items': '🔗',
-    competitions: '🏆',
-    activities:   '📅',
+const allSections = {
+    'posts':         { label: 'Posts',         icon: '📰' },
+    'pages':         { label: 'Pages',         icon: '📄' },
+    'media':         { label: 'Media',         icon: '🖼️' },
+    'menu-items':    { label: 'Menu Items',    icon: '🔗' },
+    'competitions':  { label: 'Competitions',  icon: '🏆' },
+    'activities':    { label: 'Activities',    icon: '📅' },
+    'meetings':      { label: 'Meetings',      icon: '🗓️' },
+    'page-views':    { label: 'Page Views',    icon: '👁️' },
+    'field-changes': { label: 'Field Changes', icon: '🔀' },
 };
 
-const indexLinks = computed(() =>
-    (page.props.can ?? [])
+const isAdmin = computed(() => page.props.auth?.user?.is_admin);
+
+const indexLinks = computed(() => {
+    // Admins see everything.
+    if (isAdmin.value) {
+        return Object.entries(allSections).map(([resource, section]) => ({
+            label: section.label,
+            href:  `/internal/${resource}`,
+            icon:  section.icon,
+        }));
+    }
+
+    return (page.props.can ?? [])
         .filter(p => typeof p === 'string' && p.endsWith('.index'))
         .map(p => {
-            const parts = p.split('.');          // ['internal', 'posts', 'index']
-            const resource = parts[1];
-            return {
-                label: resource.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-                href:  `/${parts[0]}/${resource}`,
-                icon:  sectionIcons[resource] ?? '📁',
-            };
+            const resource = p.split('.').slice(1, -1).join('-');
+            const section = allSections[resource];
+            return section ? {
+                label: section.label,
+                href:  `/internal/${resource}`,
+                icon:  section.icon,
+            } : null;
         })
-);
+        .filter(Boolean);
+});
 
 const stats = [
     { label: 'Upcoming Events', value: '4', icon: '📅', change: '+2 this week', trend: 'up', color: 'bg-brand-50 border-brand-200', iconBg: 'bg-brand-100', valueColor: 'text-brand-700' },

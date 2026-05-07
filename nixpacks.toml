@@ -108,6 +108,20 @@ stdout_logfile=/var/log/worker-laravel.log
 stderr_logfile=/var/log/worker-laravel.log
 '''
 
+"worker-ssr.conf" = '''
+[program:worker-ssr]
+process_name=%(program_name)s_%(process_num)02d
+command=node /app/bootstrap/ssr/ssr.mjs
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+numprocs=1
+startsecs=3
+stdout_logfile=/var/log/worker-ssr.log
+stderr_logfile=/var/log/worker-ssr.log
+'''
+
 "php-fpm.conf" = '''
 [www]
 listen = 127.0.0.1:9000

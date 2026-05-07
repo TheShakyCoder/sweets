@@ -22,6 +22,8 @@ Route::middleware('auth')->post('/competitions/{slug}/submit', [\App\Http\Contro
 
 Route::get('/api/facebook-feed', [FacebookFeedController::class, 'index'])->name('facebook.feed');
 
+Route::get('/calendar', [\App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,6 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('pages', \App\Http\Controllers\Internal\PageController::class);
         Route::resource('posts', \App\Http\Controllers\Internal\PostController::class);
         Route::resource('activities', \App\Http\Controllers\Internal\ActivityController::class);
+        Route::resource('meetings', \App\Http\Controllers\Internal\MeetingController::class)->except(['show']);
         Route::get('page-views', [\App\Http\Controllers\Internal\PageViewController::class, 'index'])->name('page-views.index');
         Route::get('field-changes', [\App\Http\Controllers\Internal\FieldChangeController::class, 'index'])->name('field-changes.index');
     });
