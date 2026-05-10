@@ -16,7 +16,7 @@ const props = defineProps({
 
 <template>
     <Head
-        :title="`${page.title} — Woodvale &amp; Ainsdale Community Centre`"
+        :title="`${page.title} — Penwortham Lollipops`"
         :description="page.description"
     />
 
@@ -25,7 +25,7 @@ const props = defineProps({
         <Header :navLinks="navLinks" :canLogin="canLogin" :canRegister="canRegister" />
 
         <!-- Hero banner -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-500 to-brand-700 text-white">
             <div class="absolute -top-16 -right-16 w-72 h-72 bg-brand-500/25 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -left-10 w-64 h-64 bg-brand-800/35 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute right-[-40px] top-1/2 w-72 h-72 pointer-events-none select-none"

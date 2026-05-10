@@ -29,14 +29,14 @@ function tagColour(index) {
 </script>
 
 <template>
-    <Head title="News &amp; Updates — Woodvale &amp; Ainsdale Community Centre" />
+    <Head title="News &amp; Updates — Penwortham Lollipops" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
 
         <Header :navLinks="navLinks" :canLogin="canLogin" :canRegister="canRegister" />
 
         <!-- ── PAGE HERO BANNER ── -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-500 to-brand-700 text-white">
             <!-- Decorative blobs -->
             <div class="absolute -top-16 -right-16 w-72 h-72 bg-brand-500/25 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -left-10 w-64 h-64 bg-brand-800/35 rounded-full blur-3xl pointer-events-none"></div>
@@ -61,7 +61,7 @@ function tagColour(index) {
                     News &amp; Updates
                 </h1>
                 <p class="text-white/75 text-lg max-w-xl leading-relaxed">
-                    The latest stories, announcements, and news from the heart of Woodvale &amp; Ainsdale.
+                    The latest stories, announcements, and news from Penwortham Lollipops.
                 </p>
             </div>
 

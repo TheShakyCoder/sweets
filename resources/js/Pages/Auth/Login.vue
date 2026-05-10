@@ -23,7 +23,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout title="Welcome back" subtitle="Sign in to the WACA portal">
+    <GuestLayout title="Welcome back" subtitle="Sign in to the Lollipops portal">
         <Head title="Login" />
 
         <!-- Status message (e.g. after password reset) -->

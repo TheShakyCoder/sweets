@@ -1,40 +1,40 @@
 <script setup>
 const events = [
     {
-        date: 'SAT 12 APR',
-        title: 'Spring Community Fair',
-        time: '10:00 – 16:00',
-        location: 'Main Hall',
-        tag: 'Community',
-        tagColor: 'bg-brand-100 text-brand-700',
-        accent: 'bg-brand-600',
+        date: 'SEASONAL',
+        title: 'Halloween Trick or Treat',
+        time: 'October Half Term',
+        location: 'In-Store',
+        tag: 'Seasonal',
+        tagColor: 'bg-orange-100 text-orange-700',
+        accent: 'bg-orange-500',
     },
     {
-        date: 'WED 16 APR',
-        title: 'Senior Coffee Morning',
-        time: '09:30 – 11:30',
-        location: 'Community Café',
-        tag: 'Seniors',
-        tagColor: 'bg-sky-100 text-sky-700',
-        accent: 'bg-sky-500',
+        date: 'SEASONAL',
+        title: 'Santa\'s Grotto Experience',
+        time: 'December',
+        location: 'In-Store',
+        tag: 'Christmas',
+        tagColor: 'bg-red-100 text-red-700',
+        accent: 'bg-red-500',
     },
     {
-        date: 'FRI 25 APR',
-        title: 'Youth Film Night',
-        time: '18:00 – 21:00',
-        location: 'Activity Room',
-        tag: 'Youth',
+        date: 'YEAR ROUND',
+        title: 'Character Visits',
+        time: 'Check our socials',
+        location: 'In-Store',
+        tag: 'Kids',
         tagColor: 'bg-purple-100 text-purple-700',
-        accent: 'bg-purple-500',
+        accent: 'bg-candy-purple',
     },
     {
-        date: 'SAT 3 MAY',
-        title: 'Family Fun Day',
-        time: '11:00 – 15:00',
-        location: 'Outdoor Space',
-        tag: 'Family',
-        tagColor: 'bg-accent-100 text-orange-700',
-        accent: 'bg-accent-500',
+        date: 'AVAILABLE NOW',
+        title: 'Pick \'n\' Mix Trailer Hire',
+        time: 'Weddings & Events',
+        location: 'Your Venue',
+        tag: 'Hire',
+        tagColor: 'bg-brand-100 text-brand-700',
+        accent: 'bg-brand-500',
     },
 ];
 </script>
@@ -44,15 +44,14 @@ const events = [
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-end justify-between mb-14">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-3 block">Upcoming
-                        Events</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900">
-                        What's on
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 mb-3 block">Events &amp; Hire</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-warm-900">
+                        What's <span class="text-gradient-candy">on</span>
                     </h2>
                 </div>
-                <a href="#"
-                    class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-800 transition-colors">
-                    View all events
+                <a href="#contact"
+                    class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-brand-500 hover:text-brand-700 transition-colors">
+                    Get in touch to book
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>

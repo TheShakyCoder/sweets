@@ -61,7 +61,7 @@ const recentActivity = [
 </script>
 
 <template>
-    <Head title="Dashboard — WACA Internal" />
+    <Head title="Dashboard — Lollipops Admin" />
 
     <AuthenticatedLayout title="Internal Dashboard">
         <template #header>
@@ -136,12 +136,11 @@ const recentActivity = [
             <div class="space-y-5">
 
                 <!-- Charity info card -->
-                <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-5 text-white">
+                <div class="bg-gradient-to-br from-brand-500 to-brand-600 rounded-2xl p-5 text-white">
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="/media/logo.png" alt="WACA" class="h-12 w-auto brightness-0 invert opacity-90" />
+                        <img src="/media/logo.png" alt="Lollipops" class="h-12 w-auto brightness-0 invert opacity-90" />
                         <div>
-                            <p class="font-semibold text-sm font-display">Woodvale &amp; Ainsdale</p>
-                            <p class="text-white/60 text-xs">Community Centre</p>
+                            <p class="font-semibold text-sm font-display">Penwortham Lollipops</p>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-center">

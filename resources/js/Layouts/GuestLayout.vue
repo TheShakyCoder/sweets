@@ -11,7 +11,7 @@ defineProps({
     <div class="min-h-screen flex font-sans antialiased">
 
         <!-- ── Left brand panel ── -->
-        <div class="hidden lg:flex lg:w-1/2 xl:w-5/12 flex-col bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white relative overflow-hidden">
+        <div class="hidden lg:flex lg:w-1/2 xl:w-5/12 flex-col bg-gradient-to-br from-brand-600 via-brand-500 to-brand-700 text-white relative overflow-hidden">
 
             <!-- Decorative blobs -->
             <div class="absolute -top-20 -left-20 w-72 h-72 bg-brand-500/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -30,10 +30,9 @@ defineProps({
             <!-- Centre content -->
             <div class="relative flex-1 flex flex-col justify-center px-10 xl:px-14">
                 <Link href="/" class="flex items-center gap-4 mb-10">
-                    <img src="/media/logo.png" alt="WACA Logo" class="h-16 w-auto brightness-0 invert opacity-90" />
+                    <img src="/media/logo.png" alt="Lollipops Logo" class="h-16 w-auto brightness-0 invert opacity-90" />
                     <div>
-                        <p class="font-display font-bold text-lg leading-tight">Woodvale &amp; Ainsdale</p>
-                        <p class="text-white/60 text-sm">Community Centre</p>
+                        <p class="font-display font-bold text-lg leading-tight">Penwortham Lollipops</p>
                     </div>
                 </Link>
 
@@ -41,7 +40,7 @@ defineProps({
                     Portal
                 </h1>
                 <p class="text-white/75 text-base leading-relaxed mb-10 max-w-sm">
-                    Manage events, news, members, and more — all in one place. Keeping Woodvale &amp; Ainsdale connected.
+                    Manage your shop, news, events, and more — all in one place.
                 </p>
 
                 <!-- Feature bullets -->
@@ -60,7 +59,7 @@ defineProps({
 
             <!-- Footer -->
             <div class="relative px-10 pb-10">
-                <p class="text-white/40 text-xs">Registered Charity No. 1234567 &middot; &copy; {{ new Date().getFullYear() }} WACA</p>
+                <p class="text-white/40 text-xs">&copy; {{ new Date().getFullYear() }} Penwortham Lollipops</p>
             </div>
         </div>
 
@@ -70,10 +69,9 @@ defineProps({
             <!-- Mobile header -->
             <div class="lg:hidden flex items-center justify-between px-6 pt-6 pb-4">
                 <Link href="/" class="flex items-center gap-3">
-                    <img src="/media/logo.png" alt="WACA Logo" class="h-10 w-auto" />
+                    <img src="/media/logo.png" alt="Lollipops Logo" class="h-10 w-auto" />
                     <div>
-                        <p class="font-display font-semibold text-brand-700 text-sm leading-tight">Woodvale &amp; Ainsdale</p>
-                        <p class="text-warm-400 text-xs">Community Centre</p>
+                        <p class="font-display font-semibold text-brand-600 text-sm leading-tight">Penwortham Lollipops</p>
                     </div>
                 </Link>
                 <Link href="/" class="text-xs text-warm-500 hover:text-brand-600 transition-colors font-medium">

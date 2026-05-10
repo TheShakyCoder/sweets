@@ -3,7 +3,6 @@ import PrimaryLink from '@/Components/PrimaryLink.vue';
 import { Link, usePage } from '@inertiajs/vue3';
 
 const page = usePage();
-
 </script>
 
 <template>
@@ -11,57 +10,52 @@ const page = usePage();
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-3 block">About
-                        Us</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-6 leading-tight">
-                        Built by the community,<br />for the community
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 mb-3 block">About Us</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-warm-900 mb-6 leading-tight">
+                        More than just<br />a <span class="text-gradient-candy">sweet shop</span>
                     </h2>
                     <p class="text-warm-600 leading-relaxed mb-4">
-                        Woodvale &amp; Ainsdale Community Centre is a registered charity dedicated to
-                        improving lives and strengthening the bonds that make our neighbourhood special.
-                        We believe everyone deserves a place to belong.
+                        Penwortham Lollipops is a family-run sweet shop bursting with colour, flavour,
+                        and a whole lot of fun. We're passionate about bringing you the best sweets from
+                        around the world — from nostalgic retro favourites to the latest American imports.
                     </p>
                     <p class="text-warm-600 leading-relaxed mb-8">
-                        From our daily café and social groups to our youth programmes and support services,
-                        everything we do is driven by the needs of local people — shaped by volunteers,
-                        funded by donations, and delivered with care.
+                        Pop in and you'll be greeted with a friendly face and aisles packed with over 90
+                        self-serve pick 'n' mix varieties, American candy, sour sweets, chocolate, and
+                        olde world treats. Whether you're after a gift, party supplies, or just a cheeky
+                        treat for yourself — we've got you covered.
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <PrimaryLink href="/services">What We Offer</PrimaryLink>
-                        <Link href="/contact"
-                            class="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-brand-200 text-brand-700 text-sm font-semibold rounded-xl hover:border-brand-400 transition-colors">
-                            Contact Us
-                        </Link>
+                        <a href="#sweets"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 text-white text-sm font-semibold rounded-xl hover:bg-brand-600 transition-colors shadow-sm">
+                            See What We Sell
+                        </a>
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-brand-200 text-brand-600 text-sm font-semibold rounded-xl hover:border-brand-400 transition-colors">
+                            Find Us
+                        </a>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-brand-600 rounded-2xl p-6 text-white col-span-2">
-                        <p class="text-2xl font-display font-bold mb-2">"A true community gem"</p>
+                    <div class="rounded-2xl p-6 text-white col-span-2" style="background: linear-gradient(135deg, #ff1a75 0%, #d946ef 50%, #8b5cf6 100%)">
+                        <p class="text-2xl font-display font-bold mb-2">"An amazing shop!"</p>
                         <p class="text-white/80 text-sm leading-relaxed">
-                            "I've been coming to the centre for 15 years. It's changed my life — I made friends here,
-                            got help when I needed it, and now I volunteer every Thursday."
+                            "We got a giant bag of sweets, some choc nibbles and two bags of blue takis.
+                            The staff were so lovely — highly recommended! We'll definitely be back."
                         </p>
-                        <p class="text-white/60 text-xs mt-3 font-medium">— Margaret T., Ainsdale resident</p>
+                        <p class="text-white/60 text-xs mt-3 font-medium">— Happy customer via TikTok</p>
                     </div>
                     <div class="bg-white rounded-2xl p-5 border border-warm-200 flex flex-col items-start gap-2">
-                        <span class="text-3xl">🏅</span>
-                        <p class="text-sm font-semibold text-warm-800">Registered Charity</p>
-                        <p class="text-xs text-warm-500">No. {{ page.props.site.charity_number }}</p>
+                        <span class="text-3xl">&#127853;</span>
+                        <p class="text-sm font-semibold text-warm-800">Self-Serve Pick 'n' Mix</p>
+                        <p class="text-xs text-warm-500">90+ varieties to choose from</p>
                     </div>
                     <div class="bg-white rounded-2xl p-5 border border-warm-200 flex flex-col items-start gap-2">
-                        <span class="text-3xl">🌿</span>
-                        <p class="text-sm font-semibold text-warm-800">Est. {{ page.props.site.established }}</p>
-                        <p class="text-xs text-warm-500">{{ 2026 - page.props.site.established }} years of service</p>
+                        <span class="text-3xl">&#127758;</span>
+                        <p class="text-sm font-semibold text-warm-800">American Imports</p>
+                        <p class="text-xs text-warm-500">The latest from the US</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="w-full max-w-3xl mx-auto py-12 pt-24" tabindex="0" role="application" :aria-label="page.props.site.full_name + ' video'">
-                <div class="border border-warm-200 rounded-2xl overflow-hidden">
-                    <video class="w-full" preload="metadata" controls
-                        src="/media/VID-20181207-WA0007.mp4">
-                    </video>
                 </div>
             </div>
         </div>

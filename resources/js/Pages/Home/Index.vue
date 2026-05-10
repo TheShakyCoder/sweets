@@ -1,6 +1,5 @@
 <script setup>
 import { Head, usePage } from '@inertiajs/vue3';
-import FacebookFeed from '@/Components/FacebookFeed.vue';
 import Hero from '@/Pages/Home/Partials/Hero.vue';
 import Stats from '@/Pages/Home/Partials/Stats.vue';
 import About from '@/Pages/Home/Partials/About.vue';
@@ -9,6 +8,7 @@ import Events from '@/Pages/Home/Partials/Events.vue';
 import News from '@/Pages/Home/Partials/News.vue';
 import Volunteer from '@/Pages/Home/Partials/Volunteer.vue';
 import Contact from '@/Pages/Home/Partials/Contact.vue';
+import InstagramFeed from '@/Components/InstagramFeed.vue';
 import Header from '@/Layouts/Partials/Header.vue';
 import Footer from '@/Layouts/Partials/Footer.vue';
 
@@ -31,34 +31,34 @@ const navLinks = page.props.site.nav_links;
 
         <Header :navLinks="navLinks" :canLogin="canLogin" :canRegister="canRegister" />
 
-        <!-- ── HERO ── -->
+        <!-- HERO -->
         <Hero :site="site" />
 
-        <!-- ── STATS ── -->
+        <!-- STATS -->
         <Stats />
 
-        <!-- ── ABOUT ── -->
+        <!-- ABOUT -->
         <About />
 
-        <!-- ── SERVICES ── -->
+        <!-- OUR SWEETS -->
         <Services />
 
-        <!-- ── EVENTS ── -->
+        <!-- EVENTS & HIRE -->
         <Events />
 
-        <!-- ── NEWS ── -->
+        <!-- NEWS -->
         <News />
 
-        <!-- ── FACEBOOK FEED ── -->
-        <FacebookFeed />
+        <!-- INSTAGRAM FEED -->
+        <InstagramFeed />
 
-        <!-- ── VOLUNTEER CTA ── -->
+        <!-- WEDDINGS & EVENTS CTA -->
         <Volunteer />
 
-        <!-- ── CONTACT ── -->
+        <!-- CONTACT -->
         <Contact :site="site" />
 
-        <!-- ── FOOTER ── -->
+        <!-- FOOTER -->
         <Footer :navLinks="navLinks" />
 
     </div>

@@ -48,7 +48,7 @@ const otherSubmissions = props.submissions.filter(s => !s.is_winner);
 </script>
 
 <template>
-    <Head :title="`${competition.title} — Woodvale &amp; Ainsdale Community Centre`"
+    <Head :title="`${competition.title} — Penwortham Lollipops`"
           :description="competition.description" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
@@ -56,7 +56,7 @@ const otherSubmissions = props.submissions.filter(s => !s.is_winner);
         <Header :navLinks="navLinks" :canLogin="canLogin" :canRegister="canRegister" />
 
         <!-- Hero -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-500 to-brand-700 text-white">
             <div class="absolute -top-16 -right-16 w-72 h-72 bg-brand-500/25 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -left-10 w-64 h-64 bg-brand-800/35 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute right-[-40px] top-1/2 w-72 h-72 pointer-events-none select-none"
