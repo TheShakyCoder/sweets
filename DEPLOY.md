@@ -1,4 +1,4 @@
-# Deploying Penwortham Lollipops with Docker
+# Deploying Acme Sweets with Docker
 
 This repo ships a production-ready **Dockerfile** that builds a single
 container running nginx, PHP-FPM, queue workers, and SSR — all managed

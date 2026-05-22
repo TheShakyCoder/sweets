@@ -32,12 +32,12 @@
 
                             <!-- Logo -->
                             <img src="{{ config('app.url') }}/media/logo.png"
-                                 alt="Penwortham Lollipops"
+                                 alt="Acme Sweets"
                                  width="80" height="80"
                                  style="width:80px;height:80px;object-fit:contain;border-radius:50%;background-color:rgba(255,255,255,0.15);padding:6px;display:block;margin:0 auto 16px;" />
 
                             <p style="margin:0 0 4px;font-size:18px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">
-                                Penwortham Lollipops
+                                Acme Sweets
                             </p>
                         </td>
                     </tr>
@@ -51,7 +51,7 @@
                                 Hi {{ $user->name }},
                             </p>
                             <p style="margin:0 0 28px;font-size:15px;color:#78716c;line-height:1.6;">
-                                Thanks for joining the Lollipops family. Before you get started,
+                                Thanks for joining the Acme Sweets family. Before you get started,
                                 we just need to confirm this is your email address.
                             </p>
 
@@ -95,7 +95,7 @@
 
                             <!-- Didn't request notice -->
                             <p style="margin:0;font-size:13px;color:#a8a29e;line-height:1.6;">
-                                If you didn't create an account with Penwortham Lollipops,
+                                If you didn't create an account with Acme Sweets,
                                 you can safely ignore this email — no account will be activated.
                             </p>
 
@@ -137,7 +137,7 @@
                                             Liverpool Road, Penwortham, Preston, PR1 0TB
                                         </p>
                                         <p style="margin:0 0 16px;font-size:11px;color:rgba(255,255,255,0.3);">
-                                            Penwortham Lollipops
+                                            Acme Sweets
                                         </p>
                                         <!-- Separator dots -->
                                         <p style="margin:0;font-size:11px;color:rgba(255,255,255,0.25);">

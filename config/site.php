@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'fullname' => env('SITE_FULLNAME', 'Penwortham Lollipops'),
+    'fullname' => env('SITE_FULLNAME', 'Acme Sweets'),
     'address' => env('SITE_ADDRESS', 'Liverpool Road, Penwortham, Preston, PR1 0TB'),
     'telephone' => env('SITE_TELEPHONE', '01772 378 415'),
     'email' => env('SITE_EMAIL', 'hello@lolipopslancashire.co.uk'),

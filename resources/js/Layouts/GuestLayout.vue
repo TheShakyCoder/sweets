@@ -30,9 +30,9 @@ defineProps({
             <!-- Centre content -->
             <div class="relative flex-1 flex flex-col justify-center px-10 xl:px-14">
                 <Link href="/" class="flex items-center gap-4 mb-10">
-                    <img src="/media/logo.png" alt="Lollipops Logo" class="h-16 w-auto brightness-0 invert opacity-90" />
+                    <img src="/media/logo.png" alt="Acme Sweets Logo" class="h-16 w-auto brightness-0 invert opacity-90" />
                     <div>
-                        <p class="font-display font-bold text-lg leading-tight">Penwortham Lollipops</p>
+                        <p class="font-display font-bold text-lg leading-tight">Acme Sweets</p>
                     </div>
                 </Link>
 
@@ -59,7 +59,7 @@ defineProps({
 
             <!-- Footer -->
             <div class="relative px-10 pb-10">
-                <p class="text-white/40 text-xs">&copy; {{ new Date().getFullYear() }} Penwortham Lollipops</p>
+                <p class="text-white/40 text-xs">&copy; {{ new Date().getFullYear() }} Acme Sweets</p>
             </div>
         </div>
 
@@ -69,9 +69,9 @@ defineProps({
             <!-- Mobile header -->
             <div class="lg:hidden flex items-center justify-between px-6 pt-6 pb-4">
                 <Link href="/" class="flex items-center gap-3">
-                    <img src="/media/logo.png" alt="Lollipops Logo" class="h-10 w-auto" />
+                    <img src="/media/logo.png" alt="Acme Sweets Logo" class="h-10 w-auto" />
                     <div>
-                        <p class="font-display font-semibold text-brand-600 text-sm leading-tight">Penwortham Lollipops</p>
+                        <p class="font-display font-semibold text-brand-600 text-sm leading-tight">Acme Sweets</p>
                     </div>
                 </Link>
                 <Link href="/" class="text-xs text-warm-500 hover:text-brand-600 transition-colors font-medium">

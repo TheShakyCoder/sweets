@@ -14,15 +14,15 @@ const page = usePage();
             <div class="grid md:grid-cols-4 gap-10 mb-10">
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="/media/logo.png" alt="Lollipops Logo" class="h-14 w-auto brightness-0 invert opacity-90" />
+                        <img src="/media/logo.png" alt="Acme Sweets Logo" class="h-14 w-auto brightness-0 invert opacity-90" />
                         <div>
-                            <p class="font-semibold text-white font-display">Penwortham</p>
-                            <p class="text-sm text-brand-300 font-display">Lollipops</p>
+                            <p class="font-semibold text-white font-display">Acme</p>
+                            <p class="text-sm text-brand-300 font-display">Sweets</p>
                         </div>
                     </div>
                     <p class="text-white/60 text-sm leading-relaxed max-w-xs">
                         The biggest self-serve pick 'n' mix in the North West! American candy, retro sweets, and
-                        everything in between at our Penwortham shop.
+                        everything in between at our shop.
                     </p>
                 </div>
 
@@ -74,7 +74,7 @@ const page = usePage();
 
             <div
                 class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-                <p>&copy; Penwortham Lollipops {{ new Date().getFullYear() }}. All rights reserved.</p>
+                <p>&copy; Acme Sweets {{ new Date().getFullYear() }}. All rights reserved.</p>
                 <div class="flex gap-5">
                     <a href="#" class="hover:text-white/70 transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white/70 transition-colors">Terms of Use</a>

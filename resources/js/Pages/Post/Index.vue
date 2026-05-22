@@ -29,7 +29,7 @@ function tagColour(index) {
 </script>
 
 <template>
-    <Head title="News &amp; Updates — Penwortham Lollipops" />
+    <Head title="News &amp; Updates — Acme Sweets" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
 
@@ -61,7 +61,7 @@ function tagColour(index) {
                     News &amp; Updates
                 </h1>
                 <p class="text-white/75 text-lg max-w-xl leading-relaxed">
-                    The latest stories, announcements, and news from Penwortham Lollipops.
+                    The latest stories, announcements, and news from Acme Sweets.
                 </p>
             </div>
 

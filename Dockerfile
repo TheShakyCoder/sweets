@@ -1,5 +1,5 @@
 # =============================================================================
-#  Penwortham Lollipops — Production Dockerfile
+#  Acme Sweets — Production Dockerfile
 #  nginx + php-fpm + supervisor (queue workers + SSR)
 # =============================================================================
 
@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         nginx supervisor curl unzip git \
         libicu-dev libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
         libssl-dev libonig-dev \
-        nodejs npm \
+        nodejs \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
         pcntl opcache pdo pdo_mysql intl zip gd exif bcmath mbstring \

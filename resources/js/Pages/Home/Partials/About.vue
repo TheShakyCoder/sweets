@@ -15,7 +15,7 @@ const page = usePage();
                         More than just<br />a <span class="text-gradient-candy">sweet shop</span>
                     </h2>
                     <p class="text-warm-600 leading-relaxed mb-4">
-                        Penwortham Lollipops is a family-run sweet shop bursting with colour, flavour,
+                        Acme Sweets is a family-run sweet shop bursting with colour, flavour,
                         and a whole lot of fun. We're passionate about bringing you the best sweets from
                         around the world — from nostalgic retro favourites to the latest American imports.
                     </p>

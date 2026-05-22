@@ -48,7 +48,7 @@ const otherSubmissions = props.submissions.filter(s => !s.is_winner);
 </script>
 
 <template>
-    <Head :title="`${competition.title} — Penwortham Lollipops`"
+    <Head :title="`${competition.title} — Acme Sweets`"
           :description="competition.description" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
