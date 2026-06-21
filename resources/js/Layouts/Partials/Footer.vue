@@ -1,5 +1,7 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
+import CookieConsent from '@/Components/CookieConsent.vue';
+import DemoDisclaimer from '@/Components/DemoDisclaimer.vue';
 
 defineProps({
     navLinks: { type: Array },
@@ -81,5 +83,8 @@ const page = usePage();
                 </div>
             </div>
         </div>
+
+        <DemoDisclaimer />
+        <CookieConsent />
     </footer>
 </template>

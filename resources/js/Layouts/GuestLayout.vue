@@ -64,7 +64,7 @@ defineProps({
         </div>
 
         <!-- ── Right form panel ── -->
-        <div class="flex-1 flex flex-col bg-warm-50">
+        <div class="flex-1 flex flex-col bg-gradient-to-br from-warm-50 via-brand-50 to-accent-50">
 
             <!-- Mobile header -->
             <div class="lg:hidden flex items-center justify-between px-6 pt-6 pb-4">

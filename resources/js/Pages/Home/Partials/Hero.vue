@@ -48,10 +48,10 @@ defineProps({
                     <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-8 tracking-tight">
                         Life is
                         <span class="relative inline-block">
-                            <span class="relative z-10">Good</span>
+                            <span class="relative z-10">Sweet</span>
                             <span class="absolute -bottom-1 left-0 right-0 h-4 bg-accent-300/40 rounded-full -skew-x-3 z-0"></span>
                         </span>
-                        <br />at <span class="text-accent-300 drop-shadow-lg">Acme Sweets</span>
+                        <br />at <span class="text-accent-300 drop-shadow-lg">Acme</span>
                     </h1>
 
                     <p class="text-lg sm:text-xl text-white/85 leading-relaxed mb-10 max-w-xl font-medium">
