@@ -2,7 +2,7 @@
 import { usePage } from '@inertiajs/vue3';
 
 const page = usePage();
-const instagramUrl = page.props.site.social?.instagram || 'https://www.instagram.com/lolipops.penwortham/';
+const instagramUrl = page.props.site.social?.instagram || 'https://www.instagram.com';
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const instagramUrl = page.props.site.social?.instagram || 'https://www.instagram
                 </div>
                 <a :href="instagramUrl" target="_blank" rel="noopener"
                    class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-brand-500 hover:text-brand-700 transition-colors">
-                    @lolipops.penwortham
+                    Acme Sweets
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -51,7 +51,7 @@ const instagramUrl = page.props.site.social?.instagram || 'https://www.instagram
                     </p>
                     <a :href="instagramUrl" target="_blank" rel="noopener"
                        class="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity shadow-lg text-sm">
-                        Follow @lolipops.penwortham
+                        Follow us — Acme Sweets
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
@@ -63,7 +63,7 @@ const instagramUrl = page.props.site.social?.instagram || 'https://www.instagram
             <div class="sm:hidden mt-8 text-center">
                 <a :href="instagramUrl" target="_blank" rel="noopener"
                    class="inline-flex items-center gap-2 text-sm font-medium text-brand-500 hover:text-brand-700 transition-colors">
-                    @lolipops.penwortham
+                    Acme Sweets
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>

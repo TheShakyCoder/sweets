@@ -9,7 +9,7 @@ return [
     'opening_times' => "Monday - Saturday: 11:00am - 5:00pm<br>Sunday: Closed",
 
     'social' => [
-        'instagram' => 'https://www.instagram.com/lolipops.penwortham/',
+        'instagram' => 'https://www.instagram.com',
         'facebook' => 'https://www.facebook.com/Lolipopslancashireltd',
         'tiktok' => 'https://www.tiktok.com/@lolipops_lancashire',
     ],
