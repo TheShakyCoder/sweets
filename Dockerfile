@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends php-cli php-xml
 
 # Install PHP deps first (layer cache)
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --ignore-platform-reqs
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-source --ignore-platform-reqs
 
 # Install Node deps (layer cache)
 COPY package.json package-lock.json ./
@@ -65,7 +65,7 @@ COPY --from=build-assets /app/public/build /var/www/html/public/build
 COPY --from=build-assets /app/bootstrap/ssr /var/www/html/bootstrap/ssr
 
 # Install PHP production deps
-RUN composer install --prefer-dist --optimize-autoloader --no-dev --no-interaction
+RUN composer install --prefer-source --optimize-autoloader --no-dev --no-interaction
 
 # Ensure directories exist and are writable
 RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \

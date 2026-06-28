@@ -81,7 +81,7 @@ function dismiss() {
                             For demonstration purposes only
                         </h2>
                         <p class="text-sm leading-relaxed text-warm-600">
-                            This website is a demo. It does not represent a real firm or
+                            This website is a demo. It does not represent a real company§ or
                             real services. Any names, contact details or content shown here
                             are illustrative only.
                         </p>
