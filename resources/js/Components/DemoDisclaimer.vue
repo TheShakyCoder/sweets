@@ -4,7 +4,21 @@ import { ref, onMounted } from 'vue';
 const STORAGE_KEY = 'demo_disclaimer_dismissed';
 const visible = ref(false);
 
+// Search engine / preview crawlers shouldn't see the demo modal — it can end up
+// in indexed snapshots and link previews.
+const BOT_PATTERN = /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|embedly|quora link preview|whatsapp|telegrambot|discordbot|slackbot|twitterbot|google-inspectiontool|chrome-lighthouse|headlesschrome/i;
+
+function isBot() {
+    if (typeof navigator === 'undefined' || !navigator.userAgent) {
+        return false;
+    }
+    return BOT_PATTERN.test(navigator.userAgent);
+}
+
 onMounted(() => {
+    if (isBot()) {
+        return;
+    }
     try {
         if (!localStorage.getItem(STORAGE_KEY)) {
             visible.value = true;
