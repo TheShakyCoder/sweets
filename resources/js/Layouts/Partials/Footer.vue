@@ -76,7 +76,11 @@ const page = usePage();
 
             <div
                 class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-                <p>&copy; Acme Sweets {{ new Date().getFullYear() }}. All rights reserved.</p>
+                <p>
+                    &copy; {{ new Date().getFullYear() }}
+                    <a href="https://fig.ltd.uk" target="_blank" rel="noopener"
+                        class="hover:text-white/70 transition-colors">Fig Limited</a>. All rights reserved.
+                </p>
                 <div class="flex gap-5">
                     <a href="#" class="hover:text-white/70 transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white/70 transition-colors">Terms of Use</a>

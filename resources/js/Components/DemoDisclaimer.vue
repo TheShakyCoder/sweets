@@ -85,6 +85,15 @@ function dismiss() {
                             real services. Any names, contact details or content shown here
                             are illustrative only.
                         </p>
+                        <p class="mt-3 text-sm leading-relaxed text-warm-600">
+                            Built by
+                            <a
+                                href="https://fig.ltd.uk"
+                                target="_blank"
+                                rel="noopener"
+                                class="font-semibold text-accent-400 underline underline-offset-2 hover:text-accent-500 transition-colors"
+                            >Fig Limited</a>.
+                        </p>
 
                         <button
                             type="button"
