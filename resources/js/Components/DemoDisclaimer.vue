@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 
 const STORAGE_KEY = 'demo_disclaimer_dismissed';
 const visible = ref(false);
+const hideTrigger = ref(false);
 
 // Search engine / preview crawlers shouldn't see the demo modal — it can end up
 // in indexed snapshots and link previews.
@@ -17,6 +18,7 @@ function isBot() {
 
 onMounted(() => {
     if (isBot()) {
+        hideTrigger.value = true;
         return;
     }
     try {
@@ -28,6 +30,10 @@ onMounted(() => {
     }
 });
 
+function open() {
+    visible.value = true;
+}
+
 function dismiss() {
     try {
         localStorage.setItem(STORAGE_KEY, new Date().toISOString());
@@ -37,6 +43,22 @@ function dismiss() {
 </script>
 
 <template>
+    <!-- Floating trigger -->
+    <button
+        v-if="!visible && !hideTrigger"
+        type="button"
+        @click="open"
+        aria-label="Show demo notice"
+        class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 rounded-full bg-accent-400 text-warm-900 shadow-2xl hover:bg-accent-400/90 transition-colors"
+    >
+        <span class="absolute inset-0 rounded-full bg-accent-400 animate-ping opacity-75"></span>
+        <svg class="relative w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+    </button>
+
     <Transition
         enter-active-class="transition duration-200 ease-out"
         enter-from-class="opacity-0"
