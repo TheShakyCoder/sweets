@@ -28,6 +28,7 @@
 
 <body class="font-sans antialiased">
     @inertia
+    <script src="https://pl31548909.profitableratecpmnetwork.com/c8/b1/27/c8b12707cdbe63e913bb267777cde1a4.js"></script>
 </body>
 
 </html>
