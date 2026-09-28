@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\MenuItem;
 use App\Models\User;
 use App\Models\Post;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -73,6 +74,12 @@ class HandleInertiaRequests extends Middleware
             ],
 
             'can' => $can ?? [],
+
+            // Needed by the SSR server, which can't see the @routes blade directive
+            'ziggy' => fn () => [
+                ...(new Ziggy)->toArray(),
+                'location' => $request->url(),
+            ],
         ];
     }
 }
