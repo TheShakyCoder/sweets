@@ -7,8 +7,6 @@
     <meta name="robots" content="{{ config('site.robots_allowed') ? 'index, follow' : 'noindex, nofollow' }}">
     <meta name="google-adsense-account" content="ca-pub-3326354836489064">
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">

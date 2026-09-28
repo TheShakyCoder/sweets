@@ -75,7 +75,7 @@ function formatTime(iso) {
 </script>
 
 <template>
-    <Head :title="`Calendar — ${monthName}`" />
+    <Head :title="`Calendar — ${monthName} — Acme Sweets`" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
         <Header :navLinks="navLinks" />

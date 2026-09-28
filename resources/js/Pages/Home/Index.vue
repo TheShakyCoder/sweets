@@ -25,7 +25,7 @@ const navLinks = page.props.site.nav_links;
 
 <template>
 
-    <Head :title="site.fullname" />
+    <Head :title="site.fullname || 'Acme Sweets'" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
 
